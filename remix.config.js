@@ -6,10 +6,10 @@ module.exports = {
     ? "./server.ts"
     : undefined,
   serverBuildPath: ".netlify/functions-internal/server.js",
-  appDirectory: "app",
-  assetsBuildDirectory: "public/build",
-  serverBuildPath: "build/index.js",
-  publicPath: "/build/",
+  // appDirectory: "app",
+  // assetsBuildDirectory: "public/build",
+  // serverBuildPath: "build/index.js",
+  // publicPath: "/build/",
   future: {
     v2_errorBoundary: true,
     v2_meta: true,
