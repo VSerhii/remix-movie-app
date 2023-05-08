@@ -2,7 +2,7 @@ import type { LoaderArgs } from '@remix-run/node';
 
 import { Form, Link, useLoaderData } from '@remix-run/react';
 
-import { search } from '~/api/tmdb';
+import { search } from '~/api/api';
 
 export async function loader({ request }: LoaderArgs) {
   const url = new URL(request.url);

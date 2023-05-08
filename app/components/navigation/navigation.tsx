@@ -15,7 +15,7 @@ export default function Navigation() {
           </Link>
         </li>
         <li>
-          <Link className="btn btn-circle" to="/movie" prefetch="intent">
+          <Link className="btn btn-circle" to="/movies" prefetch="intent">
             <Movie />
           </Link>
         </li>

@@ -2,7 +2,7 @@ import type { LoaderArgs } from '@remix-run/node';
 
 import { useLoaderData } from '@remix-run/react';
 
-import { getMovie } from '~/api/tmdb';
+import { getMovie } from '~/api/api';
 import { Hero } from '~/components/hero/hero';
 
 export async function loader({ params }: LoaderArgs) {
@@ -11,7 +11,7 @@ export async function loader({ params }: LoaderArgs) {
   return movie;
 }
 
-export default function MovieDetail() {
+export default function Movie() {
   const movie = useLoaderData<typeof loader>();
 
   return (
