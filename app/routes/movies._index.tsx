@@ -46,7 +46,7 @@ export default function Movies() {
           vote_count={featured.vote_count}
         />
       )}
-      <Divider label="Now Plaing" />
+      <Divider label="Now playing" />
       <Carousel>{renderCarouselSlides(nowPlaying?.results)}</Carousel>
       <Divider label="Popular" />
       <Carousel>{renderCarouselSlides(popular?.results)}</Carousel>
