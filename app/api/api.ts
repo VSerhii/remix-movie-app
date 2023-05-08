@@ -9,7 +9,7 @@ import type {
 
 const baseURL = 'https://api.themoviedb.org/3';
 
-const fetchTMDB = async <T = unknown>(
+const fetcher = async <T = unknown>(
   path: string,
   search: Record<string, string> = {},
 ): Promise<T> => {
@@ -34,7 +34,7 @@ type GetMovie = {
 };
 
 export const getMovie = async ({ id }: GetMovie) => {
-  const result = await fetchTMDB<MovieMediaDetails>(`movie/${id}`, {
+  const result = await fetcher<MovieMediaDetails>(`movie/${id}`, {
     append_to_response: 'videos,credits,images,external_ids,release_dates',
     include_image_language: 'en',
   });
@@ -48,7 +48,7 @@ type GetMovies = {
 };
 
 export const getMovies = async ({ page, query }: GetMovies) => {
-  const result = await fetchTMDB<Collection<MovieMedia>>(`movie/${query}`, {
+  const result = await fetcher<Collection<MovieMedia>>(`movie/${query}`, {
     page: String(page),
   });
 
@@ -65,7 +65,7 @@ type GetTvShow = {
 };
 
 export const getTvShow = async ({ id }: GetTvShow) => {
-  const result = await fetchTMDB<TvMediaDetails>(`tv/${id}`, {
+  const result = await fetcher<TvMediaDetails>(`tv/${id}`, {
     append_to_response: 'videos,credits,images,external_ids,content_ratings',
     include_image_language: 'en',
   });
@@ -79,7 +79,7 @@ type GetTvShows = {
 };
 
 export const getTvShows = async ({ page, query }: GetTvShows) => {
-  const result = await fetchTMDB<Collection<TvMedia>>(`tv/${query}`, {
+  const result = await fetcher<Collection<TvMedia>>(`tv/${query}`, {
     page: String(page),
   });
 
@@ -97,19 +97,8 @@ type Search = {
 };
 
 export const search = ({ page, query }: Search) => {
-  return fetchTMDB<Collection<ProductionMedia>>('search/multi', {
+  return fetcher<Collection<ProductionMedia>>('search/multi', {
     page: String(page),
     query,
   });
-};
-
-type GetRandomMedia<T> = {
-  collections: Collection<T>[];
-};
-
-export const getRandomMedia = <T>({ collections }: GetRandomMedia<T>) => {
-  const items = collections.flatMap((collection) => collection.results || []);
-  const randomItem = items[Math.floor(Math.random() * items.length)];
-
-  return randomItem;
 };
