@@ -45,7 +45,7 @@ export default function Index() {
           vote_count={featured.vote_count}
         />
       )}
-      <Divider label="Popular" />
+      <Divider label="Popular movies" />
       <Carousel>{renderCarouselSlides(popular?.results)}</Carousel>
     </div>
   );
