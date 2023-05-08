@@ -20,14 +20,13 @@ export default function Search() {
     <div className="m-2">
       <Form method="get" name="search" action="/search">
         <input type="text" name="query" placeholder="Type here" className="input w-full max-w-xs" />
-
         <button className="btn mx-4" type="submit">
           Search
         </button>
       </Form>
       <div className="flex flex-col justify-center">
         {searchResult?.map((item, index) => (
-          <Link className="max-w-lg" key={`${item.title}${index}`} to={`/movie/${item.id}`}>
+          <Link className="max-w-lg" key={`${item.title}${index}`} to={`/movies/${item.id}`}>
             <div>{item.title}</div>
           </Link>
         ))}

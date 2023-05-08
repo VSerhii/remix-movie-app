@@ -1,36 +1,36 @@
-import type { MovieMedia } from '~/api/types';
+import type { TvMedia } from '~/api/types';
 
 import { Link, useLoaderData } from '@remix-run/react';
 
-import { getMovie, getMovies, getTvShows } from '~/api/api';
+import { getTvShow, getTvShows } from '~/api/api';
 import Card from '~/components/card/card';
 import { Carousel } from '~/components/carousel/Carousel';
 import { Divider } from '~/components/divider/divider';
 import { Hero } from '~/components/hero/hero';
 import { getRandomMedia } from '~/helpers/get-random-media';
 
-function renderCarouselSlides(movies: MovieMedia[] | undefined) {
-  return movies?.map((movie) => (
-    <Link key={movie.id} to={`/movies/${movie.id}`} prefetch="intent" className="carousel-item">
-      <Card key={movie.id} media={movie} />
+function renderCarouselSlides(tvShows: TvMedia[] | undefined) {
+  return tvShows?.map((tv) => (
+    <Link key={tv.id} to={`/tv/${tv.id}`} prefetch="intent" className="carousel-item">
+      <Card key={tv.id} media={tv} />
     </Link>
   ));
 }
 
 export async function loader() {
-  const [popular] = await Promise.all([
-    getMovies({ page: 1, query: 'top_rated' }),
-    // getTvShows({ page: 1, query: 'popular' }),
+  const [popular, topRated] = await Promise.all([
+    getTvShows({ page: 1, query: 'popular' }),
+    getTvShows({ page: 1, query: 'top_rated' }),
   ]);
 
-  const random = getRandomMedia({ collections: [popular] });
-  const featured = await getMovie({ id: random.id });
+  const random = getRandomMedia({ collections: [popular, topRated] });
+  const featured = await getTvShow({ id: random.id });
 
-  return { featured, popular };
+  return { featured, popular, topRated };
 }
 
-export default function Index() {
-  const { featured, popular } = useLoaderData<typeof loader>();
+export default function TvShows() {
+  const { featured, popular, topRated } = useLoaderData<typeof loader>();
 
   return (
     <div className="flex max-h-screen flex-col gap-4 overflow-y-scroll">
@@ -40,13 +40,15 @@ export default function Index() {
           id={featured.id}
           title={featured.title}
           overview={featured.overview}
-          originalTitle={featured.original_title}
+          originalTitle={featured.original_name}
           vote_average={featured.vote_average}
           vote_count={featured.vote_count}
         />
       )}
       <Divider label="Popular" />
       <Carousel>{renderCarouselSlides(popular?.results)}</Carousel>
+      <Divider label="Top rated" />
+      <Carousel>{renderCarouselSlides(topRated?.results)}</Carousel>
     </div>
   );
 }

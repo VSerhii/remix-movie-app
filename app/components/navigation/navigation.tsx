@@ -19,7 +19,7 @@ export default function Navigation() {
     <nav className="h-full flex-none fixed">
       <ul className="flex flex-col gap-y-5 h-full p-4 bg-base-300">
         {navItems.map((navItem) => (
-          <li>
+          <li key={navItem.to}>
             <Link className={btnClassName} to={navItem.to} prefetch={navItem.prefetch}>
               {navItem.icon}
             </Link>

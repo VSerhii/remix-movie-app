@@ -18,7 +18,7 @@ export default function Card({ media }: Props) {
         />
       </picture>
       <div className="flex flex-col items-center">
-        <span className="flex">{media.title}</span>
+        <span className="flex">{media.title || media.original_name}</span>
         <Rating name={media.title || ''} value={media.vote_average} read_only />
       </div>
     </div>

@@ -8,7 +8,7 @@ export type TvMedia = {
   origin_country?: string[];
   original_language?: string;
   original_name?: string;
-  overview?: string[];
+  overview?: string;
   popularity?: number;
   poster_path?: string | null;
   title?: string;
