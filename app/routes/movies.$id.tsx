@@ -6,7 +6,7 @@ import { getMovie } from '~/api/api';
 import { Hero } from '~/components/hero/hero';
 
 export async function loader({ params }: LoaderArgs) {
-  const movie = await getMovie({ id: Number(params.id) || 0 });
+  const movie = await getMovie({ id: Number(params.id) });
 
   return movie;
 }
