@@ -12,7 +12,7 @@ export default function Card({ media }: Props) {
       <picture>
         <img
           className="max-w-full border-4 border-base-300 object-cover "
-          src={`https://image.tmdb.org/t/p/w780/${media.poster_path}`}
+          src={`https://image.tmdb.org/t/p/w185/${media.poster_path}`}
           height={270}
           width={185}
         />
