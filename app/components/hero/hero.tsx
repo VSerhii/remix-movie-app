@@ -25,6 +25,7 @@ export function Hero({
         <div className="absolute bottom-0 right-0 top-0 lg:left-1/3">
           <picture>
             <img
+              loading="lazy"
               alt={title || originalTitle}
               className="h-full w-full max-w-full object-cover"
               src={imgSrc}

@@ -11,6 +11,7 @@ export default function Card({ media }: Props) {
     <div className="w-56">
       <picture>
         <img
+          loading="lazy"
           className="max-w-full border-4 border-base-300 object-cover "
           src={`https://image.tmdb.org/t/p/w185/${media.poster_path}`}
           height={270}
