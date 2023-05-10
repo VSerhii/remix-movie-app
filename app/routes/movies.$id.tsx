@@ -11,6 +11,8 @@ export async function loader({ params }: LoaderArgs) {
   return movie;
 }
 
+export const handle = { hydrate: false };
+
 export default function Movie() {
   const movie = useLoaderData<typeof loader>();
 

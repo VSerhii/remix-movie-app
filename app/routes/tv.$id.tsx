@@ -11,6 +11,8 @@ export async function loader({ params }: LoaderArgs) {
   return tv;
 }
 
+export const handle = { hydrate: false };
+
 export default function Tv() {
   const tv = useLoaderData<typeof loader>();
 

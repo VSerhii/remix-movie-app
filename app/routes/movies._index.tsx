@@ -30,6 +30,8 @@ export async function loader() {
   return { featured, nowPlaying, popular, topRated };
 }
 
+export const handle = { hydrate: false };
+
 export default function Movies() {
   const { featured, nowPlaying, popular, topRated } = useLoaderData<typeof loader>();
 

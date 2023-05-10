@@ -29,6 +29,8 @@ export async function loader() {
   return { featured, popular, topRated };
 }
 
+export const handle = { hydrate: false };
+
 export default function TvShows() {
   const { featured, popular, topRated } = useLoaderData<typeof loader>();
 

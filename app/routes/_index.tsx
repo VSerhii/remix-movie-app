@@ -29,6 +29,8 @@ export async function loader() {
   return { featured, popular };
 }
 
+export const handle = { hydrate: false };
+
 export default function Index() {
   const { featured, popular } = useLoaderData<typeof loader>();
 

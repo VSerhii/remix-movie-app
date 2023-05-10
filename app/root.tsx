@@ -1,7 +1,7 @@
 import type { LinksFunction } from '@remix-run/node'; // or cloudflare/deno
 import type { V2_MetaFunction } from '@remix-run/react';
 
-import { Links, LiveReload, Meta, Scripts, ScrollRestoration } from '@remix-run/react';
+import { Links, LiveReload, Meta, Scripts, ScrollRestoration, useMatches } from '@remix-run/react';
 
 import Layout from './layout';
 import styles from './tailwind.css?inline';
@@ -12,6 +12,11 @@ export const meta: V2_MetaFunction = () => {
 };
 
 export default function App() {
+  const matches = useMatches();
+
+  // If at least one route wants to hydrate, this will return true
+  const includeScripts = matches.some((match) => match.handle?.hydrate);
+
   return (
     <html lang="en">
       <head>
@@ -23,7 +28,7 @@ export default function App() {
       <body>
         <Layout />
         <ScrollRestoration />
-        <Scripts />
+        {includeScripts && <Scripts />}
         <LiveReload />
       </body>
     </html>
