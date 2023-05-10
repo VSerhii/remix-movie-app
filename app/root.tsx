@@ -1,9 +1,17 @@
 import type { LinksFunction } from '@remix-run/node'; // or cloudflare/deno
 import type { V2_MetaFunction } from '@remix-run/react';
 
-import { Links, LiveReload, Meta, Scripts, ScrollRestoration, useMatches } from '@remix-run/react';
+import {
+  Links,
+  LiveReload,
+  Meta,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
+  useMatches,
+} from '@remix-run/react';
 
-import Layout from './layout';
+import Layout from './components/layout/layout';
 import styles from './tailwind.css?inline';
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }];
@@ -26,7 +34,9 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Layout />
+        <Layout>
+          <Outlet />
+        </Layout>
         <ScrollRestoration />
         {includeScripts && <Scripts />}
         <LiveReload />

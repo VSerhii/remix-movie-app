@@ -1,5 +1,6 @@
 /** @type {import('@remix-run/dev').AppConfig} */
 module.exports = {
+  tailwind: true,
   ignoredRouteFiles: ["**/.*"],
   server:
   process.env.NETLIFY || process.env.NETLIFY_LOCAL
@@ -15,6 +16,5 @@ module.exports = {
     v2_meta: true,
     v2_normalizeFormMethod: true,
     v2_routeConvention: true,
-    unstable_tailwind:true
   },
 };
