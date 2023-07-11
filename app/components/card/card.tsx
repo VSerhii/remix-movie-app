@@ -8,7 +8,7 @@ type Props = {
 
 export default function Card({ media }: Props) {
   return (
-    <div className="w-56">
+    <div className="flex flex-col justify-items-center	items-center text-center	w-56">
       <picture>
         <img
           loading="lazy"
@@ -18,10 +18,8 @@ export default function Card({ media }: Props) {
           width={185}
         />
       </picture>
-      <div className="flex flex-col items-center">
-        <span className="flex">{media.title || media.original_name}</span>
-        <Rating name={media.title || ''} value={media.vote_average} read_only />
-      </div>
+      <span className="flex">{media.title || media.original_name}</span>
+      <Rating name={media.title || ''} value={media.vote_average} read_only />
     </div>
   );
 }

@@ -12,7 +12,7 @@ import { getRandomMedia } from '~/helpers/get-random-media';
 function renderCarouselSlides(movies: MovieMedia[] | undefined) {
   return movies?.map((movie) => (
     <Link key={movie.id} to={`/movies/${movie.id}`} prefetch="intent" className="carousel-item">
-      <Card key={movie.id} media={movie} />
+      <Card media={movie} />
     </Link>
   ));
 }
